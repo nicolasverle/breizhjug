@@ -4,10 +4,7 @@ flow {
     buildSources {
         java()
         analyze {
-            failIf {
-                lowerThan(coverage: 50.0)
-                greaterThan(criticals: 1)
-            }
+            failIf(minCoverage: 50.0, maxCriticals: 1)
         }
 //        dockerize(
 //        """
