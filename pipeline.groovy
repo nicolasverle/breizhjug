@@ -1,6 +1,6 @@
 @Library("tz") _
 
-pipeline {
+flow {
     buildSources {
         java()
         analyze {
