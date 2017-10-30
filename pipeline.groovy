@@ -6,7 +6,7 @@ flow {
         analyze {
             failIf(criticalsExceed: 1)
         }
-        createImage(
+        createImage(script:
                 """
 			FROM tomcat
 			COPY target/*.war \$CATALINA_HOME/webapp/project1.war
