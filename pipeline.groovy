@@ -12,7 +12,7 @@ flow {
         """
 			FROM tomcat
 			COPY target/*.war \$CATALINA_HOME/webapps/project1.war
-			HEALTHCHECK CMD curl --fail http://${qualif}/project1 || exit 1
+			HEALTHCHECK CMD curl --fail -L http://${qualif}/project1 || exit 1
 		""")
     }
     deploy(host: qualif, port: 80) {
