@@ -1,3 +1,5 @@
+@Library("tz") _
+
 setRegistry("dfdf")
 String qualifHost = "qualif.tz.zenika.com"
 flow {
