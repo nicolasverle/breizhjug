@@ -1,6 +1,6 @@
 @Library("tz") _
 
-setRegistry("dfdf")
+setRegistry("192.168.33.62:5000")
 String qualifHost = "qualif.tz.zenika.com"
 flow {
     buildSources {
