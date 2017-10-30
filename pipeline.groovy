@@ -16,6 +16,6 @@ flow {
         """)
     }
     deploy(host: qualifHost, port: 80) {
-        dockerd(ports: [[host: 80, container: 8080]], volumes: [[host: "/etc/timezone", container: "/etc/timezone:ro"]])
+        dockerd(volumes: [[host: "/etc/timezone", container: "/etc/timezone:ro"]])
     }
 }
