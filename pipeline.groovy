@@ -1,7 +1,5 @@
-@Library("tz") _
-
-setRegistry("192.168.33.62:5000")
-def qualif = "qualif.tz.zenika.com"
+setRegistry("dfdf")
+String qualifHost = "qualif.tz.zenika.com"
 flow {
     buildSources {
         java()
@@ -10,12 +8,12 @@ flow {
         }
         createImage(script:
         """
-			FROM tomcat
-			COPY target/*.war \$CATALINA_HOME/webapps/project1.war
-			HEALTHCHECK CMD curl --fail -L http://${qualif}/project1 || exit 1
-		""")
+            FROM tomcat
+            COPY target/*.war \$CATALINA_HOME/project1.war
+            HEALTHCHECK CMD curl --fail http://${qualifHost}/project1 || exit 1
+        """)
     }
-    deploy(host: qualif, port: 80) {
-        dockerd(volumes: [[host: "/etc/timezone", container: "/etc/timezone:ro"]])
+    deploy(host: qualifHost, port: 80) {
+        dockerd(ports: [[host: 80, container: 8080]], volumes: [[host: "/etc/timezone", container: "/etc/timezone:ro"]])
     }
 }
