@@ -4,19 +4,16 @@ flow {
     buildSources {
         java()
         analyze {
-            failIf(minCoverage: 50.0, maxCriticals: 1)
+            failIf(criticalsExceed: 1)
         }
-//        dockerize(
-//        """
-//			FROM tomcat8
-//			ONBUILD COPY target/*.war /webapp/project1.war
-//		"""
-//        )
+        createImage(
+                """
+			FROM tomcat
+			COPY target/*.war \$CATALINA_HOME/webapp/project1.war
+		"""
+        )
     }
-//    deploy {
-//        docker(
-//            host: "192.168.33.15",
-//
-//        )
-//    }
+    deploy(host: "qualif.tz.zenika.com", port: 80) {
+        dockerd(image: "project1", volumes: [[host: "/etc/timezone", container: "/etc/timezone:ro"]])
+    }
 }
