@@ -15,7 +15,7 @@ flow {
         """)
     }
     deploy(host: qualifHost, port: 80) {
-        setRegistry("192.168.33.15:5000")
+        setRegistry("192.168.33.62:5000")
         dockerd(ports: [[host: 80, container: 8080]])
     }
 }
