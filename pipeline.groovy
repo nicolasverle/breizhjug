@@ -11,7 +11,7 @@ flow {
         createImage(script:
         """
         FROM tomcat
-        COPY target/*.war \$CATALINA_HOME/project1.war
+        COPY target/*.war \$CATALINA_HOME/webapps/project1.war
         HEALTHCHECK CMD curl --fail http://${qualifHost}/project1 || exit 1
         """)
     }
