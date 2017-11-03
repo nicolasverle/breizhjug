@@ -1,5 +1,6 @@
 @Library("tz") _
 
+setRegistry("192.168.33.62:5000")
 flow {
     buildSources {
         java()
