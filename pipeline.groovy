@@ -1,6 +1,7 @@
 @Library("tz") _
 
 def qualifHost = "qualif.tz.zenika.com"
+setRegistry("192.168.33.62:5000")
 flow {
     buildSources {
         java()
@@ -14,8 +15,7 @@ flow {
         HEALTHCHECK CMD curl --fail http://${qualifHost}/project1 || exit 1
         """)
     }
-    deploy(host: qualifHost, port: 80) {
-        setRegistry("192.168.33.62:5000")
-        dockerd(ports: [[host: 80, container: 8080]])
+    deploy(host: qualifHost) {
+        dockerd(ports: [[host: 80, container: 8080]], volumes: [[host: "/etc/timezone", container: "/etc/timezone:ro"]])
     }
 }
