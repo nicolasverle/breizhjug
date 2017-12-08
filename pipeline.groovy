@@ -16,7 +16,7 @@ building {
 }
 
 deploying(appPort: appPort, appName: appName) {
-    kubectl(namespace: "qualif") {
+    kubectl(namespace: "qualif", manualValidation: true) {
         ingress("qualif.breizhjug.com") {
             service {
                 deployment(replicas: 3) {
