@@ -6,10 +6,13 @@ def imgName = "docker.io/nicolasverle/breizhjug"
 
 building {
     java()
-    createImage(script: """
+    createImage(
+        tag: imgName,
+        script: """
         FROM tomcat
         COPY target/*.war \$CATALINA_HOME/webapps/${appName}.war
-    """)
+        """
+    )
 }
 
 deploying(appPort: appPort, appName: appName) {
