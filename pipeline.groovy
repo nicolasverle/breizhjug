@@ -20,7 +20,9 @@ deploying(appPort: appPort, appName: appName) {
         ingress("qualif.breizhjug.com") {
             service {
                 deployment(replicas: 3, name: appName, imagePullSecrets: ["breizhjug"]) {
-                    container(image: imgName, imagePullPolicy: "Always")
+                    pod(name: appName, imagePullSecrets: ["breizhjug"]) {
+                        container(image: imgName, imagePullPolicy: "Always")
+                    }
                 }
             }
         }
