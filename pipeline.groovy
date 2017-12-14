@@ -1,4 +1,4 @@
-@Library("breizhjug") _
+@Library("breizhjugLib") _
 
 def appName = "breizhjug"
 def appPort = 8080
