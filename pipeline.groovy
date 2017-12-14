@@ -19,11 +19,8 @@ deploying(appPort: appPort, appName: appName) {
     kubectl(namespace: "qualif", manualValidation: true) {
         ingress("qualif.breizhjug.com") {
             service {
-                deployment(replicas: 3) {
-                    rollingUpdate(maxSurge: 1, maxUnavailable: 1)
-                    pod(name: appName, imagePullSecrets: ["breizhjug"]) {
-                        container(image: imgName, imagePullPolicy: "Always")
-                    }
+                deployment(replicas: 3, name: appName, imagePullSecrets: ["breizhjug"]) {
+                    container(image: imgName, imagePullPolicy: "Always")
                 }
             }
         }
